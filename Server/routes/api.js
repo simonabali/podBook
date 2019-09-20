@@ -197,48 +197,48 @@ router.get("/books/:searchedSkill", function (req, res) {
 
 // ======================================= GET YOUTUBE REQUEST ================================ // 
 
-let youtubeApiKey = 'AIzaSyBXysSPUaFWos7eA34ro6425SMJsW9tQQ0'
+// let youtubeApiKey = 'AAIzaSyAwo7bsdRBvO-aEZ1fktiZAWeVDh4EC5Po'
 
-router.get("/videos/:searchedSkill", function (req, res) {
-    let searchedSkill = req.params.searchedSkill
-    let link = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedSkill}&type=video&videoType=episode&key=${youtubeApiKey}`
+// router.get("/videos/:searchedSkill", function (req, res) {
+//     let searchedSkill = req.params.searchedSkill
+//     let link = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedSkill}&type=video&videoType=episode&key=${youtubeApiKey}`
 
-    request(link, function (err, response) {
-        if (err) { console.log(err) }
-        let data = JSON.parse(response.body)
-        let dataArray = data.items
-        let dataWanted = []
-            dataArray.forEach(d => {
-            let video = {
-                "title": d.snippet.title,
-                "channelTitle": d.channelTitle,
-                "description": d.snippet.description,
-                "link": `https://www.youtube.com/watch?v=${d.id.videoId}`,
-                "videoID": d.id.videoId
-            }
-            dataWanted.push(video)
-        })
+//     request(link, function (err, response) {
+//         if (err) { console.log(err) }
+//         let data = JSON.parse(response.body)
+//         let dataArray = data.items
+//         let dataWanted = []
+//             dataArray.forEach(d => {
+//             let video = {
+//                 "title": d.snippet.title,
+//                 "channelTitle": d.channelTitle,
+//                 "description": d.snippet.description,
+//                 "link": `https://www.youtube.com/watch?v=${d.id.videoId}`,
+//                 "videoID": d.id.videoId
+//             }
+//             dataWanted.push(video)
+//         })
 
-        let resultsArray = []
-        let randomNumbers = []
+//         let resultsArray = []
+//         let randomNumbers = []
 
-        for (let i = 0; i < 3; i++) {
-            let length = dataWanted.length
-            let max = length - 1
-            let min = 0
-            let randomNumber = getRandomInteger(max, min)
-            let index = randomNumbers.findIndex(r => r.number == randomNumber)
-            if (index != -1) {
-                i--
-            } else {
-                randomNumbers.push({ "number": randomNumber })
-                resultsArray.push(dataWanted[randomNumber])
-            }
-        }
-        res.send(resultsArray)
-        })
+//         for (let i = 0; i < 3; i++) {
+//             let length = dataWanted.length
+//             let max = length - 1
+//             let min = 0
+//             let randomNumber = getRandomInteger(max, min)
+//             let index = randomNumbers.findIndex(r => r.number == randomNumber)
+//             if (index != -1) {
+//                 i--
+//             } else {
+//                 randomNumbers.push({ "number": randomNumber })
+//                 resultsArray.push(dataWanted[randomNumber])
+//             }
+//         }
+//         res.send(resultsArray)
+//         })
 
-    })
+//     })
 
 
 
